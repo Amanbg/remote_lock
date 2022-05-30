@@ -40,8 +40,12 @@ app.use(function(err, req, res, next) {
 });
 
 
+const DeviceRouter = require('./routes/device')
+
+app.use('api/v1/device', DeviceRouter);
+
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
+  console.log(`Remote Lock app listening on port ${PORT}`)
 })
 
 module.exports = app;

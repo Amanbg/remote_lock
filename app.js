@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
+const deviceRouter = require('./routes/device')
 
 var app = express();
 
@@ -21,7 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
+
+app.use('/api/v1/device', deviceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,9 +43,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-const DeviceRouter = require('./routes/device')
-
-app.use('api/v1/device', DeviceRouter);
 
 app.listen(PORT, () => {
   console.log(`Remote Lock app listening on port ${PORT}`)
